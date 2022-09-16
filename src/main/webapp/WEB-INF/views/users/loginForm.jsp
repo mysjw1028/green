@@ -14,31 +14,6 @@
 	</form>
 </div>
 
-<script>
-	$("#btnLogin").click(()=>{
-		      let data = {
-	            username: $("#username").val(),
-	            password: $("#password").val(),
-	      };
-	      
-	      $.ajax("/login",{
-	         type: "POST",
-	         dataType: "json",//응답 데이터
-	         data: JSON.stringify(data),// http body에 들고갈 요청 데이터	 
-	         headers : {//http헤더에 들고갈 데이터
-	               "Content-Type" : "application/json; charset=utf-8"//안넣으면 한글 들어갈때 다 깨짐 ;으로 사용
-	         }
-	      }).done((res)=>{
-	         if(res.code == 1){
-	           // console.log(res);
-	           location.href = "/"; 
-	         }else{
-	        	 alert("로그인실패, 아이디 패스워드를 확인해주세요");
-	        	 history.back();
-	         }
-	      });
-	   });
-	   
-</script>
+<script src ="/js/users.js"></script>
 <%@ include file="../layout/footer.jsp"%>
 
