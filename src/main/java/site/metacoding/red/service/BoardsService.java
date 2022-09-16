@@ -25,11 +25,12 @@ public class BoardsService {
 		if (page == null) {
 			page = 0;
 		}
-		int startNum = page * 3;
+		int startNum = page * 5;
 		System.out.println("==========");
 		System.out.println("keyword : "+keyword);
 		System.out.println("==========");
 		List<MainDto> boardsList = boardsDao.findAll(startNum, keyword);
+		
 		PagingDto pagingDto = boardsDao.paging(page, keyword);
 		if (boardsList.size() == 0)
 			pagingDto.setNotResult(true);
