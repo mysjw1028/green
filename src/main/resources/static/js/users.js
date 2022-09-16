@@ -12,6 +12,7 @@ $("#btnUsernameSameCheck").click(() => {
 
 $("#btnLogin").click(() => {
 	login();
+	//loginTest();
 });
 
 $("#btnDelete").click(() => {
@@ -62,7 +63,7 @@ function checkUsername() {
 	let username = $("#username").val();
 
 	// 2. Ajax 통신
-	$.ajax(`/users/usernameSameCheck?username= $ {username}`, {
+	$.ajax(`/users/usernameSameCheck?username= ${username}`, {
 		type: "GET",
 		dataType: "json",
 		async: true
@@ -81,11 +82,19 @@ function checkUsername() {
 	});
 }
 
+function loginTest() {
+	let remember = $("#remember").prop("checked");
+	console.log(remember);
+}
+
+
+
 function login() {
 	//alert("로그인함수 실행됨");
 	let data = {
 		username: $("#username").val(),
 		password: $("#password").val(),
+		remember: $("#remember").prop("checked")
 	};
 
 	$.ajax("/login", {
@@ -97,11 +106,9 @@ function login() {
 		}
 	}).done((res) => {
 		if (res.code == 1) {
-			// console.log(res);
 			location.href = "/";
 		} else {
 			alert("로그인실패, 아이디 패스워드를 확인해주세요");
-			history.back();
 		}
 	});
 }
