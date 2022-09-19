@@ -15,32 +15,30 @@
 </div>
 
 <script>
-$("#btnSave").click(()=>{
-	save();
-})
-
-
-function save(){
-	let data = {
-			title: $("#title").val(),
-			content: $("#content").val()
-		};
-
-		$.ajax("/boards", {
-			type: "POST",
-			dataType: "json",
-			data: JSON.stringify(data),// http에 들고갈 요청 데이터
-					
-			headers: {//http헤더에 들고갈 데이터
-				"Content-Type": "application/json"
-			}//http에 적혀있는 키값이라서 정확히 적어야함
-		}).done((res) => {
-			if (res.code == 1) {
-				location.href = "/";
-			}
-		});
-}
-
+	$("#btnSave").click(()=>{
+		save();
+		//saveTest();
+	});
+	
+	function save(){
+		let data = {
+				title: $("#title").val(),
+				content: $("#content").val()
+			};
+			$.ajax("/boards", {
+				type: "POST",
+				dataType: "json", // 응답 데이터
+				data: JSON.stringify(data), // http body에 들고갈 요청 데이터
+				headers: { // http header에 들고갈 요청 데이터
+					"Content-Type": "application/json"
+				}
+			}).done((res) => {
+				if (res.code == 1) {
+					location.href = "/";
+				}
+			});
+	}
+	
 </script>
 
 <script>
@@ -48,6 +46,5 @@ function save(){
 		height : 400
 	});
 </script>
-
 <%@ include file="../layout/footer.jsp"%>
 
